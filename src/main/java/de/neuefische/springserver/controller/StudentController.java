@@ -20,12 +20,20 @@ public class StudentController {
 //    }
 
     @GetMapping
-    public List<Student> getList(@RequestParam Optional<String> search){
-        if(search.isPresent()){
-            return service.getStudentListByName(search.get());
+    public List<Student> getList(@RequestParam Optional<String> name){
+        if(name.isPresent()){
+            return service.getStudentListByName(name.get());
         }
         return service.getList();
     }
+
+//    @GetMapping
+//    public List<Student> getList(@RequestParam Optional<String> search){
+//        if(search.isPresent()){
+//            return service.search(search.get());
+//        }
+//        return service.getList();
+//    }
 
     @GetMapping (path = "{id}")
     public Student getStudentById(@PathVariable int id){
@@ -37,7 +45,7 @@ public class StudentController {
         return service.add(student);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping(path ="{id}")
     public void deleteStudent(@PathVariable int id){
         service.deleteStudent(id);
     }

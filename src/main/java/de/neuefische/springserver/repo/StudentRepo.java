@@ -31,14 +31,14 @@ public class StudentRepo {
 
     public List<Student> getStudentsByName(String name){
 
-        List<Student> ListStudentByName = new ArrayList<>();
+        List<Student> listStudentByName = new ArrayList<>();
 
         for (Student student : studentRepo) {
-            if(student.getName() == name){
-                ListStudentByName.add(student);
+            if(student.getName().equals(name)){
+                listStudentByName.add(student);
             }
         }
-        return ListStudentByName;
+        return listStudentByName;
     }
 
     public void deleteStudent(int id){
