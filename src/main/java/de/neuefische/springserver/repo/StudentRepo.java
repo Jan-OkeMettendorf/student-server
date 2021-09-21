@@ -13,7 +13,6 @@ public class StudentRepo {
     private List<Student> studentRepo = new ArrayList<>();
 
     public StudentRepo(){
-
     }
 
     public List<Student> list(){
@@ -45,7 +44,17 @@ public class StudentRepo {
     }
 
     public void deleteStudent(int id){
-        studentRepo.remove(id);
+
+        int studentRepoSize = studentRepo.size();
+
+        for (int i = 0; i < studentRepoSize; i++) {
+            Student student = studentRepo.get(i);
+            if(student.getId() == id){
+                studentRepo.remove(student);
+                i--;
+                studentRepoSize = studentRepoSize-1;
+            }
+        }
     }
 
     public Student add(Student student){
