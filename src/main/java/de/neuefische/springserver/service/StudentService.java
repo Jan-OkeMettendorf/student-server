@@ -30,6 +30,14 @@ public class StudentService {
         return studentRepo.add(student);
     }
 
+    public List<Student> getStudentListByName(String name){
+        return studentRepo.getStudentsByName(name);
+    }
+
+    public void deleteStudent(int id){
+        studentRepo.deleteStudent(id);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

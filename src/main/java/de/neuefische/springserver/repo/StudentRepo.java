@@ -29,6 +29,22 @@ public class StudentRepo {
         throw new IllegalArgumentException("Student not found. ID: " + id );
     }
 
+    public List<Student> getStudentsByName(String name){
+
+        List<Student> ListStudentByName = new ArrayList<>();
+
+        for (Student student : studentRepo) {
+            if(student.getName() == name){
+                ListStudentByName.add(student);
+            }
+        }
+        return ListStudentByName;
+    }
+
+    public void deleteStudent(int id){
+        studentRepo.remove(id);
+    }
+
     public Student add(Student student){
         studentRepo.add(student);
         return student;

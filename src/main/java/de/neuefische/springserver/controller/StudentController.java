@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @RestController
@@ -19,7 +20,10 @@ public class StudentController {
 //    }
 
     @GetMapping
-    public List<Student> getList(){
+    public List<Student> getList(@RequestParam Optional<String> search){
+        if(search.isPresent()){
+            return service.getStudentListByName(search.get());
+        }
         return service.getList();
     }
 
@@ -31,6 +35,11 @@ public class StudentController {
     @PutMapping
     public Student addStudent(@RequestBody Student student){
         return service.add(student);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteStudent(@PathVariable int id){
+        service.deleteStudent(id);
     }
 
     @Override
