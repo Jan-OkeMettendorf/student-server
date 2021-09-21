@@ -2,6 +2,7 @@ package de.neuefische.springserver.controller;
 
 import de.neuefische.springserver.modul.Student;
 import de.neuefische.springserver.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,33 +14,34 @@ import java.util.Optional;
 @RequestMapping("student")
 public class StudentController {
 
-    private StudentService service = new StudentService();
+    private final StudentService studentService;
 
-//    public StudentController(StudentService service) {
-//        this.service = service;
-//    }
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping
     public List<Student> getList(@RequestParam Optional<String> name){
         if(name.isPresent()){
-            return service.getStudentListByName(name.get());
+            return studentService.getStudentListByName(name.get());
         }
-        return service.getList();
+        return studentService.getList();
     }
 
     @GetMapping (path = "{id}")
     public Student getStudentById(@PathVariable int id){
-        return service.getStudent(id);
+        return studentService.getStudent(id);
     }
 
     @PutMapping
     public Student addStudent(@RequestBody Student student){
-        return service.add(student);
+        return studentService.add(student);
     }
 
     @DeleteMapping(path ="{id}")
     public void deleteStudent(@PathVariable int id){
-        service.deleteStudent(id);
+        studentService.deleteStudent(id);
     }
 
     @Override
@@ -47,18 +49,18 @@ public class StudentController {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentController that = (StudentController) o;
-        return Objects.equals(service, that.service);
+        return Objects.equals(studentService, that.studentService);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(service);
+        return Objects.hash(studentService);
     }
 
     @Override
     public String toString() {
         return "StudentController{" +
-                "service=" + service +
+                "service=" + studentService +
                 '}';
     }
 }

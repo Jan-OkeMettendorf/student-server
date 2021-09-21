@@ -1,18 +1,19 @@
 package de.neuefische.springserver.repo;
 
 import de.neuefische.springserver.modul.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Repository
 public class StudentRepo {
 
     private List<Student> studentRepo = new ArrayList<>();
 
     public StudentRepo(){
-    }
 
-    public StudentRepo(List<Student> studentRepo) {
-        this.studentRepo = studentRepo;
     }
 
     public List<Student> list(){

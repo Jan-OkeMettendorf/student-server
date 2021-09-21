@@ -2,20 +2,20 @@ package de.neuefische.springserver.service;
 
 import de.neuefische.springserver.modul.Student;
 import de.neuefische.springserver.repo.StudentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
+@Service
 public class StudentService {
 
-    private StudentRepo studentRepo = new StudentRepo();
+    private final StudentRepo studentRepo;
 
+    @Autowired
     public StudentService(StudentRepo studentRepo) {
         this.studentRepo = studentRepo;
-    }
-
-    public StudentService(){
-
     }
 
     public List<Student> getList(){
