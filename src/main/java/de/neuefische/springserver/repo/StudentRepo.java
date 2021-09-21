@@ -35,7 +35,9 @@ public class StudentRepo {
 
         for (Student student : studentRepo) {
             if(student.getName().equals(name)){
-                listStudentByName.add(student);
+                if(student.getName().toLowerCase().contains(name.toLowerCase())){
+                    listStudentByName.add(student);
+                }
             }
         }
         return listStudentByName;

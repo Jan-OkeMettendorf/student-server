@@ -27,14 +27,6 @@ public class StudentController {
         return service.getList();
     }
 
-//    @GetMapping
-//    public List<Student> getList(@RequestParam Optional<String> search){
-//        if(search.isPresent()){
-//            return service.search(search.get());
-//        }
-//        return service.getList();
-//    }
-
     @GetMapping (path = "{id}")
     public Student getStudentById(@PathVariable int id){
         return service.getStudent(id);
